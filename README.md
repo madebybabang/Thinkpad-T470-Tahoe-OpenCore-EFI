@@ -144,12 +144,11 @@ Known update issues
 - ✅ CPU power management, C-states and VF curve (0.9 W up to 20 W)
 - ✅ Native OTA updates
 - ✅ Apple ID and FaceTime with App Store and other Apple ID adjacent features
-
+- ✅ WPA-Enterprise Wi-Fi
 
 
 ## ❌ What Doesn't Work
 
-- ❌ WPA-Enterprise Wi-Fi (limitation of HeliPort + itlwm)
 - ❌ AirDrop (requires AirportItlwm, which is WIP)
 
 ---
@@ -226,6 +225,7 @@ in testing (With AirportItlwm)
 | **tetenc555**                                                 | `SSDT-BATX.aml` — dual battery patch (from their T480 EFI, I believe) |
 | [**zhen-zen**](https://github.com/zhen-zen)                   | YogaSMC                                                               |
 | [**exelban**](https://github.com/exelban/stats)               | Stats app                                                             |
+| [**laobamac**](https://github.com/laobamac/itlwm)             | AirportItlwm WiFi                                                     |
 
 
 ---
