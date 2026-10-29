@@ -1,5 +1,10 @@
 # EFI Hackintosh Lenovo T470 (Kaby Lake) - macOS Tahoe
 
+<img width="1600" height="900" alt="Screenshot 2026-10-29 at 14 38 43" src="https://github.com/user-attachments/assets/68ae91b7-9948-4997-9b21-1480cb6feadd" />
+
+***Tampilan macOS Tahoe 26.7.1 di ThinkPad T470***
+
+
 Jadi gini ceritanya, gue udah berhasil pasang macOS Tahoe di ThinkPad T470 gue. Ini EFI yang gue pake sehari-hari buat kerja dan kuliah. 
 
 Awalnya gue fork dari EFI-nya suhu `userminer2` yang aslinya buat T470s. Tapi karena T470 gue ini pake prosesor Kaby Lake (i5-7300U) dan susah banget nemu yang bener-bener *plug and play*, akhirnya gue oprek sendiri sampe jalan mulus kayak sekarang. Daripada ilmunya cuma numpang lewat, mending gue share aja di sini. Siapa tau ada yang lagi pusing nyari EFI buat T470.
