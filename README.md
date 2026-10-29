@@ -1,226 +1,68 @@
- 
+# EFI Hackintosh Lenovo T470 (Kaby Lake) - macOS Tahoe
 
-&nbsp;
+Jadi gini ceritanya, gue udah berhasil pasang macOS Tahoe di ThinkPad T470 gue. Ini EFI yang gue pake sehari-hari buat kerja dan kuliah. 
 
-# Tahoe 470s | T470s macOS Tahoe EFI
+Awalnya gue fork dari EFI-nya suhu `userminer2` yang aslinya buat T470s. Tapi karena T470 gue ini pake prosesor Kaby Lake (i5-7300U) dan susah banget nemu yang bener-bener *plug and play*, akhirnya gue oprek sendiri sampe jalan mulus kayak sekarang. Daripada ilmunya cuma numpang lewat, mending gue share aja di sini. Siapa tau ada yang lagi pusing nyari EFI buat T470.
 
-<img width="1920" height="1080" alt="Capture d’écran 2026-08-23 à 12 16 49" src="https://github.com/user-attachments/assets/69922a4a-6d12-43ee-a153-1aa8c3ba522b"/>
-
-## Table of Contents
-
-1. [Introduction](#-introduction)
-2. [My Setup](#-my-setup)
-3. [Another User's Setup](#-another-users-setup)
-4. [Personal Note](#-personal-note)
-5. [General Info](#-general-info)
-6. [What Works](#-what-works)
-7. [What Doesn't Work](#-what-doesnt-work)
-8. [Setup Required](#-setup-required)
-9. [Post-Install](#-post-install)
-10. [Known issues](#-known-issues)
-11. [Credits](#-credits)
+> **Tips:** Pas nyalain laptop, tahan tombol `Esc` atau `Alt` buat munculin *boot picker* OpenCore-nya.
 
 ---
 
-## Introduction
+## 🚀 Gimana Performanya?
 
-This is a **sanitized version** of the EFI I use daily on my ThinkPad T470s hackintosh. I couldn't find a proper guide for this exact model so I made this EFI and shared it so this can hopefully help someone who was in my position.
+Udah gue tes buat ngoding, ngetik dokumen, sama *browsing* harian. Jujur, ini udah enak banget buat *daily driver*:
+*   **Grafis:** Akselerasi Metal (Intel HD 620) jalan penuh. Animasi *smooth*, gak ada yang *glitch*. Palingan *lag* dikit pas pertama kali buka app berat.
+*   **Baterai:** Buat *browsing* santai 4-5 jam. Buat *coding* sambil ngetik dokumen tembus 6-7 jam. Tapi kalau dipake *gaming* atau *rendering*, ya wasalam, 2 jam doang.
+*   **Konektivitas:** Bluetooth aman, Wi-Fi jalan pakai `itlwm.kext`. HDMI (audio + display) normal, USB-C juga jalan.
+*   **Periferal:** Keyboard (termasuk *fn keys*) normal, *trackpad* mulus semua *gesture*, *trackpoint* ijo legendaris juga hidup.
+*   **Audio:** Speaker sama *jack* headphone aman.
+*   **Dual Battery:** Persentase baterai akurat, gak ngaco (ini pakai *patch* `SSDT-BATX`).
+*   **Update:** Bisa OTA langsung dari *Settings*, dan Apple ID + App Store jalan normal.
 
-> **Tip:** Hold Esc or Alt at boot to show the OpenCore boot picker.
+## ❌ Yang Belum Bisa (Jujur Aja)
 
-### My experience so far
-
-- **Full metal GPU acceleration** — Smooth animations and usability just the ocasional lag spike and 100% cpu usage if loading assets for the first time.
-- Icons may take a second to load if you use an m.sata SSD to fix this use an NVMe SSD. (Visual does not impact usability)
-- **Apple Video Toolbox works** — video editing in Kdenlive and CapCut worked out of the box.
-- **HandBrake transcoding** — consistently over 60 fps *on battery*, compressing 10 GB footage down to \~500 MB in a few minutes.
-- **Roblox runs better** than on Windows or Linux.
-- **Battery life:** 2 h gaming · 4–5 h web browsing · 6–7 h coding &amp; document editing.
-- **Bluetooth works perfectly.**
-- **Wi-Fi is nearly fully functional** (missing a thing or two — see below).
-
-### My workflow
-
-- Coding in **C** and **Python** for classwork.
-- **Python** web backends with Flask
-- **Pulsar** as my main IDE (JetBrains IDE also run really well as in better than windows or linux)
-- Compiling **EclipsedOS** (somehow still working on this despite this project and school)
-- Light video editing using kdenlive and compressing footage with HandBrake + Intel QSV (Apple VideoToolbox)
-- I Also do take notes in class allowing me to have 5-7 hour battery life usually (intensive tasks are obviously going to kill the batteries)
-- Running VMs for code compilation and testing for memory leaks
----
-
-## My Setup
-
-
-| Spec          | Value                            |
-| ------------- | -------------------------------- |
-| Model         | Lenovo ThinkPad T470s            |
-| CPU           | Intel Core i7-6600U              |
-| RAM           | 4 + 16 GB                        |
-| GPU           | Intel HD Graphics 520            |
-| start version | **26.3 Tahoe**                   |
-| macOS version | **26.7 Tahoe**                   |
-| SMBIOS        | MacBookPro13,1                   |
-
-
-**Recorded temps:** 35 °C idle (1 W CPU) · 40–50 °C normal use (2–5 W CPU) · 65–72 °C gaming/rendering (12–20 W CPU) <br>
-**Recorded battery draw:** 6W idle · 8-11W normal use · 17-29W gaming/rendering<br>
-
-> No known issues outside of no AirDrop and no WPA-Enterprise Wi-Fi.
+*   **AirDrop:** Belum jalan karena kita pakai `itlwm.kext`. Butuh `AirportItlwm` yang katanya masih *Work In Progress*.
+*   **Continuity/Handoff:** Kadang bisa, kadang enggak. Masih *finicky* banget.
 
 ---
 
-## Another User's Setup
+## 💻 Spek Test (Laptop Gue)
 
-Many thanks to **u/No-Independant-9209** for DMing me their config and results:
+Ini spek T470 yang gue pake buat ngetes EFI ini:
 
+| Komponen | Detail |
+| :--- | :--- |
+| **Model** | Lenovo ThinkPad T470 |
+| **CPU** | Intel Core i5-7300U (Kaby Lake) |
+| **GPU** | Intel HD Graphics 620 |
+| **RAM** | 12 GB DDR4 |
+| **Storage** | SSD 2.5" (via Enclosure) |
+| **Layar** | Full HD (1920x1080) |
+| **SMBIOS** | `MacBookPro14,1` |
+| **macOS** | Tahoe (26.x) |
 
-| Spec          | Value               |
-| ------------- | ------------------- |
-| CPU           | Intel Core i5-6300U |
-| RAM           | 4 + 4 GB            |
-| GPU           | Intel HD 520        |
-| start version | **26.5 Tahoe**.     |
-| macOS version | 13.7.8 Ventura      |
-
-
-**Their experience:**
-
-- Slightly sluggish on Tahoe — not MacBook levels; couldn't handle 10+ apps smoothly
-- Usable, but the trackpad occasionally crashed
-- After downgrading to Ventura, **Continuity and everything else just worked**
+*(Catatan: Kalau RAM lu cuma 8GB, saran gue jangan maksa pakai Tahoe. Mending turun ke macOS Ventura aja. Efek "Liquid Glass" di Tahoe lumayan ngabisin RAM kalau lu sering buka banyak aplikasi. Tapi karena RAM gue 12GB, Tahoe jalan lumayan lancar.)*
 
 ---
 
-## Personal Note
+## ⚙️ Wajib Dilakuin (Setup)
 
-From what I've understood:
-
-
-| Your RAM                | My recommendation                                                                                            |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------ |
-| 8 GB                    | **Ventura** — unless you need Tahoe app compatibility and don't mind a few frame drops and cosmetic glitches |
-| 12+ GB                  | **Tahoe** should be a good way to go                                                                         |
-| 16–20+ GB               | **Tahoe** — good performance, occasional visual artefacting                                                  |
-
-
->  **If you use Tahoe:** enable Battery Saver to avoid fans ramping up when plugged in, and for better performance.
+1.  **Generate Serial Number Sendiri!** 
+    Gak usah pakai `config.plist` gue mentah-mentah. Ganti `MLB`, `SystemSerialNumber`, dan `SystemUUID` pakai **GenSMBIOS** (bikinan corpnewt). Jangan sampai serial number lu bocor atau malah ketuker sama punya orang.
+2.  **Gak Perlu Root Patching!** 
+    Ini kabar baiknya. EFI ini udah *plug and play*, gak perlu oprek-oprek system file aneh-aneh.
+3.  **Buat Audio:**
+    *   Kalau lu pakai macOS Tahoe versi baru, install aja file `HDAUniversal.pkg` yang udah gue sediain di repo ini.
+    *   Kalau lu pakai macOS versi lama, bisa pakai `VoodooHDA.kext`.
+4.  **Buat Wi-Fi:**
+    *   Karena kita pakai `itlwm.kext`, lu wajib *download* aplikasi **HeliPort** (file `.zip` udah gue siapin di repo) dan pindahin ke folder `/Applications`. Jangan lupa masukin ke *Login Items* biar otomatis *connect* pas nyala.
 
 ---
 
-## ℹ️ General Info
+## 🔥 Post-Install (Biar Gak Panas & Awet)
 
-- **System SMBIOS:** `MacBookPro13,1`
-- **Supported:** macOS Ventura → macOS Tahoe (older versions will probably work, but untested)
-
-Known update issues
-
-- `VoodooHDA.kext` only works on **macOS 26.5.2 and lower**. macOS 26.6+ requires `HDAUniversal.kext`, provided via PKG.
-- Outside of that, no known issues when updating via the Settings app.
-- /Library/Extensions/VoodooHDA.kext works seamlessly up to macOS 26.5.2 Tahoe without reinstall.
-- /Library/Extensions/HDAUniversal.kext works without reinstall on macOS 26.6+ Tahoe.
-
-
-
----
-
-## What Works
-
-**Hardware &amp; features**
-
-- ✅ Bluetooth
-- ✅ Keyboard (function keys included)
-- ✅ Trackpad (all gestures work)
-- ✅ Trackpoint
-- ✅ Function keys
-- ✅ Graphics acceleration (full Metal)
-- ✅ Wi-Fi
-- ✅ Audio (fully functional with `HDAUniversal.kext`)
-- ✅ HDMI (audio + display)
-- ✅ USB-C
-- ✅ Seamless booting
-- ✅ Dual battery (fixed percentage reporting, since 18 Jul 2026)
-- ✅ CPU power management, C-states and VF curve (0.9 W up to 20 W)
-- ✅ Native OTA updates
-- ✅ Apple ID and FaceTime with App Store and other Apple ID adjacent features
-- ✅ WPA-Enterprise Wi-Fi
-
-
-## ❌ What Doesn't Work
-
-- ❌ AirDrop (requires AirportItlwm, which is WIP)
-
----
-
-## 🔧 Setup Required
-
-1. **Generate your own serial number** — this EFI ships without mine (use [corpnewt's GenSMBIOS](https://github.com/corpnewt/GenSMBIOS)).
-2. **No root patching required** — except adding `HDAUniversal.kext` and the HeliPort app.
-
----
-
-## 🚀 Post-Install
-
-> **Is this set-and-forget?** Yes, for the most part! Once audio and Wi-Fi are set up, you can forget about it — except for major updates like 26.5.2 → 26.6 where audio may break (fixable via the PKG).
-
-> **Do I need post-install root patches?** No. Just install HDAUniversal via the provided PKG, install HeliPort app and run one terminal command to fix overheating.
-
-**Enable battery saver (recommended on Tahoe):**
+Ini yang paling sering orang lupain. Di macOS Tahoe, efek visualnya lumayan berat buat hardware jadul. Biar laptop gak *overheat* dan kipas gak muter kenceng kayak *jet* pas dicas, **wajib** jalanin command ini di Terminal:
 
 ```bash
 sudo pmset -a lowpowermode 1
-```
-
-…or simply toggle it in **Settings**.
-
-### 📋 Checklist
-
-- [ ] Install **HDAUniversal** via the provided PKG
-- [ ] Run the `pmset` command above (or enable Battery Saver in Settings)
-- [ ] Download [HeliPort](https://github.com/OpenIntelWireless/HeliPort) provided and move it to `/Applications`
-- [ ] Add HeliPort to **Login Items**
-- [ ] (Optional) Install the [Stats](https://github.com/exelban/stats) app to show battery without the yellow icon
-- [ ] disable wifi and battery icons in menubar
-- [ ] Reboot and profit?
-
-Since there are no root patches, updates shouldn't break much — if anything at all. <br>
-Any breakages do get fixed and posted here. All apps and assets used are provided by this repo.<br>
-feel free to use them if you can't find them.<br>
-
----
-
-## Known issues
-
-Applicable on Tahoe only
-|issue|severity|solution|resolution date|resolved|
-|-----------------------------------------------|------------|-----------------------------------------------|------------------|----|
-| ~~Airdrop and continuity does not work due to itlwm.kext~~ Continuity and Airdrop is finicky and kind of works | mild | New fork of AirportItlwm was released | 28/10/2026 | partial |
-| ~~WPA Enterprise does not work due to using itlwm.kext instead of airportilwm.kext~~| ~~mild~~ | New fork of AirportItlwm was released | 28/10/2026 | Yes |
-| ~~trackpad gestures partially work~~ | ~~moderate~~ | Was never a bug I had 3 finger gestures disabled in settings | 23/09/2026 | Yes |
-| ~~System severely overheating when plugged in~~| ~~Moderate~~ | Set power saver mode to always terminal command provided | 02/04/2026 | Yes |
-| ~~Poor performance and overheating associated to Liquid Glass~~ | ~~Severe~~ | Enable battery saver | 25/03/2024 | Yes |
-| ~~Poor battery life and fans spinning up due to Liquid Glass~~ | ~~Severe~~ | Enable battery saver + wait 1 hour on desktop for indexing to finish| 25/03/2024 | Yes |
-
-
-## Credits
-
-
-| Contributor                                                   | For                                                                   |
-| ------------------------------------------------------------- | --------------------------------------------------------------------- |
-| **userminer2**                                                | Making the EFI for the T470s                                          |
-| [**Dortania**](https://dortania.github.io/)                   | OpenCore                                                              |
-| [**acidanthera**](https://github.com/acidanthera)             | `Lilu.kext`, `WhateverGreen.kext`, `VirtualSMC`                       |
-| [**corpnewt**](https://github.com/corpnewt)                   | ProperTree and GenSMBIOS                                              |
-| [**OpenIntelWireless**](https://github.com/OpenIntelWireless) | Intel Wi-Fi and Bluetooth                                             |
-| **tetenc555**                                                 | `SSDT-BATX.aml` — dual battery patch (from their T480 EFI, I believe) |
-| [**zhen-zen**](https://github.com/zhen-zen)                   | YogaSMC                                                               |
-| [**exelban**](https://github.com/exelban/stats)               | Stats app                                                             |
-| [**laobamac**](https://github.com/laobamac/itlwm)             | AirportItlwm WiFi                                                     |
-
-
----
-
-## ⚠️ Disclaimer
-
-This EFI is still work in progress and experimental. It is now stable enough that I can use it as a daily driver but I can not guarantee stability on your systems. If you encounter any issues feel free to ask questions or report bugs.
+Atau gampangnya masuk ke Settings > Battery > Battery Saver > Always.
