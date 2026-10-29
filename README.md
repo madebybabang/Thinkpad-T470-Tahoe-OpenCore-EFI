@@ -66,3 +66,26 @@ Ini yang paling sering orang lupain. Di macOS Tahoe, efek visualnya lumayan bera
 ```bash
 sudo pmset -a lowpowermode 1
 Atau gampangnya masuk ke Settings > Battery > Battery Saver > Always.
+
+Checklist Post-Install:
+
+□ Ganti Serial Number di config.plist pakai GenSMBIOS.
+□ Install HDAUniversal.pkg buat suara.
+□ Download HeliPort.zip, ekstrak, dan pindahin ke folder Applications.
+□ Jalanin command pmset di atas biar gak overheat.
+□ Restart dan voila! macOS lu siap dipakai.
+
+🛠️ Known Issues
+Masalah	                            Solusi	                                    Status
+AirDrop gak jalan	            Nunggu update "AirportItlwm"	            Belum Fix
+Laptop panas pas dicas	            Jalanin `sudo pmset -a lowpowermode 1`	    Solved
+Baterai boros di macOS Tahoe	    Aktifin Battery Saver	                    Solved
+
+⚠️ Disclaimer
+Ini EFI buat eksperimen dan belajar. Gue gak bisa jamin 100% stabil di laptop lu, karena hardware tiap unit bisa beda (apalagi BIOS-nya, kadang versi BIOS bisa ngaruh). Kalau nemu masalah, silakan bikin Issues di repo ini atau nanya-nanya di forum.
+
+Gue cuma fork dan modif dari EFI-nya suhu userminer2 (aslinya buat T470s). Jadi credit tetep buat beliau, dan juga buat para developer di balik OpenCore, Lilu, WhateverGreen, VirtualSMC, dan OpenIntelWireless.
+
+Selamat mencoba! Jangan lupa backup data lu dulu. 🔥
+
+***
