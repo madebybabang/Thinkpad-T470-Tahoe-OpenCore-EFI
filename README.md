@@ -1,3 +1,8 @@
+![macOS](https://img.shields.io/badge/macOS-Tahoe-blue)
+![ThinkPad](https://img.shields.io/badge/Hardware-T470-red)
+
+
+
 # EFI Hackintosh Lenovo T470 (Kaby Lake) - macOS Tahoe
 
 <img width="1600" height="900" alt="Screenshot 2026-10-29 at 14 38 43" src="https://github.com/user-attachments/assets/68ae91b7-9948-4997-9b21-1480cb6feadd" />
