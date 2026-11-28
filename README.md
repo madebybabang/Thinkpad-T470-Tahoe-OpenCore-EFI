@@ -10,7 +10,7 @@ SMBIOS: `MacBookPro15,2`
 | Komponen | Detail |
 |---|---|
 | **Model** | Lenovo ThinkPad T470 (Tahoe) |
-| **CPU** | Intel Core i-series (Kaby Lake / Gen 7) |
+| **CPU** | Intel Core i5-7300U (Kaby Lake / Gen 7, 2C/4T, 2.6GHz up to 3.5GHz) |
 | **GPU** | Intel HD Graphics (iGPU) — via WhateverGreen |
 | **Display** | Built-in LVDS / eDP panel (Display-30e4-521 kext) |
 | **RAM** | Upgradable (DDR4 SO-DIMM) |
