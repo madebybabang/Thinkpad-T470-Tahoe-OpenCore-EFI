@@ -1243,7 +1243,7 @@
                     <key>BundlePath</key>
                     <string>SimpleHDA.kext</string>
                     <key>Comment</key>
-                    <string>SimpleHDA 1.0.2</string>
+                    <string>V1.0.2 | SimpleHDA 1.0.2</string>
                     <key>Enabled</key>
                     <true/>
                     <key>ExecutablePath</key>
@@ -2540,7 +2540,7 @@
                     <key>bluetoothInternalControllerInfo</key>
                     <data>AAAAAAAAAACJZTpVLv0=</data>
                     <key>boot-args</key>
-                    <string>-v -btlfxallowanyaddr darkwake=0 igfxonln=1 -no_compat_check itlwm_cc=US -amfipassbeta revpatch=sbvmm</string>
+                    <string>-v -no_compat_check -btlfxallowanyaddr darkwake=0 igfxonln=1 itlwm_cc=US revpatch=sbvmm itlwm_firmware=1</string>
                     <key>csr-active-config</key>
                     <data>AwgAAA==</data>
                     <key>prev-lang:kbd</key>
@@ -2609,23 +2609,23 @@
                 <key>AdviseFeatures</key>
                 <false/>
                 <key>MLB</key>
-                <string>C02050207GU0000JC</string>
+                <string>C02039500CDLNV9UE</string>
                 <key>MaxBIOSVersion</key>
                 <false/>
                 <key>ProcessorType</key>
                 <integer>1537</integer>
                 <key>ROM</key>
-                <data>fHY1KOUf</data>
+                <data>jBYVYhIf</data>
                 <key>SpoofVendor</key>
                 <true/>
                 <key>SystemMemoryStatus</key>
                 <string>Upgradable</string>
                 <key>SystemProductName</key>
-                <string>MacBookPro16,3</string>
+                <string>MacBookPro15,2</string>
                 <key>SystemSerialNumber</key>
-                <string>C02DT1YKP3XY</string>
+                <string>C02DGYZRJV3Q</string>
                 <key>SystemUUID</key>
-                <string>8DE8076F-68E6-416D-97A1-FAF3725EFFF1</string>
+                <string>93082714-432C-436D-8634-7F079A97B0D0</string>
             </dict>
             <key>UpdateDataHub</key>
             <true/>
