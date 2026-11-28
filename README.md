@@ -1,5 +1,7 @@
 # ThinkPad T470 (Tahoe) — OpenCore EFI
 
+![macOS Tahoe on ThinkPad T470](assets/macos-tahoe-thinkpad-t470.jpg)
+
 macOS Hackintosh EFI untuk **Lenovo ThinkPad T470 (Tahoe)** menggunakan **OpenCore**.  
 SMBIOS: `MacBookPro15,2`
 
